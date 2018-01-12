@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.11.1">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers>
+        <hudson.triggers.TimerTrigger>
+          <spec>*/15 * * * *</spec>
+        </hudson.triggers.TimerTrigger>
+      </triggers>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.36">
+    <script>
+node {
+    stage(&apos;Clone&apos;) {
+        git branch: &apos;development&apos;, changelog: false, poll: false, url: &apos;https://github.com/Artiax/kubernetes.git&apos;
+    }
+
+    stage(&apos;Process&apos;) {
+        dir(&apos;jobs&apos;) {
+            jobDsl ignoreMissingFiles: true, removedConfigFilesAction: &apos;DELETE&apos;, removedJobAction: &apos;DELETE&apos;, removedViewAction: &apos;DELETE&apos;, targets: &apos;*.groovy&apos;
+        }
+    }
+}
+    </script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

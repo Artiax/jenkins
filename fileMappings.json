@@ -1,0 +1,10 @@
+[
+  {
+    "from": "bin/*",
+    "to": "/usr/local/bin/"
+  },
+  {
+    "from": "jenkins/*",
+    "to": "${JENKINS_HOME}/"
+  }
+]

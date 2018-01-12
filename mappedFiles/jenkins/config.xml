@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<hudson>
+  <disabledAdministrativeMonitors/>
+  <version>2.46.2</version>
+  <numExecutors>2</numExecutors>
+  <mode>NORMAL</mode>
+  <useSecurity>true</useSecurity>
+  <authorizationStrategy class="hudson.security.AuthorizationStrategy$Unsecured"/>
+  <securityRealm class="hudson.security.SecurityRealm$None"/>
+  <disableRememberMe>false</disableRememberMe>
+  <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
+  <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
+  <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
+  <jdks/>
+  <viewsTabBar class="hudson.views.DefaultViewsTabBar"/>
+  <myViewsTabBar class="hudson.views.DefaultMyViewsTabBar"/>
+  <clouds>
+    <org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud plugin="kubernetes@0.11">
+      <name>Minikube</name>
+      <defaultsProviderTemplate></defaultsProviderTemplate>
+      <templates>
+        <org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
+          <inheritFrom></inheritFrom>
+          <name>jenkins-slave</name>
+          <privileged>false</privileged>
+          <alwaysPullImage>false</alwaysPullImage>
+          <instanceCap>2147483647</instanceCap>
+          <idleMinutes>0</idleMinutes>
+          <label>docker</label>
+          <nodeSelector></nodeSelector>
+          <customWorkspaceVolumeEnabled>false</customWorkspaceVolumeEnabled>
+          <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.EmptyDirWorkspaceVolume">
+            <memory>false</memory>
+          </workspaceVolume>
+          <volumes>
+            <org.csanchez.jenkins.plugins.kubernetes.volumes.HostPathVolume>
+              <mountPath>/var/run/docker.sock</mountPath>
+              <hostPath>/var/run/docker.sock</hostPath>
+            </org.csanchez.jenkins.plugins.kubernetes.volumes.HostPathVolume>
+            <org.csanchez.jenkins.plugins.kubernetes.volumes.HostPathVolume>
+              <mountPath>/usr/bin/docker</mountPath>
+              <hostPath>/usr/bin/docker</hostPath>
+            </org.csanchez.jenkins.plugins.kubernetes.volumes.HostPathVolume>
+          </volumes>
+          <containers>
+            <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
+              <name>jnlp</name>
+              <image>jenkins-slave:latest</image>
+              <privileged>true</privileged>
+              <alwaysPullImage>false</alwaysPullImage>
+              <workingDir>/var/jenkins_home</workingDir>
+              <command></command>
+              <args></args>
+              <ttyEnabled>true</ttyEnabled>
+              <resourceRequestCpu>500m</resourceRequestCpu>
+              <resourceRequestMemory>1Gi</resourceRequestMemory>
+              <resourceLimitCpu>1500m</resourceLimitCpu>
+              <resourceLimitMemory>2Gi</resourceLimitMemory>
+              <envVars/>
+            </org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
+          </containers>
+          <envVars/>
+          <annotations/>
+          <imagePullSecrets/>
+        </org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
+      </templates>
+      <serverUrl>https://kubernetes.default.svc.cluster.local</serverUrl>
+      <skipTlsVerify>false</skipTlsVerify>
+      <namespace>default</namespace>
+      <jenkinsUrl>http://jenkins.default.svc.cluster.local</jenkinsUrl>
+      <containerCap>10</containerCap>
+      <retentionTimeout>5</retentionTimeout>
+      <connectTimeout>0</connectTimeout>
+      <readTimeout>0</readTimeout>
+    </org.csanchez.jenkins.plugins.kubernetes.KubernetesCloud>
+  </clouds>
+  <quietPeriod>5</quietPeriod>
+  <scmCheckoutRetryCount>0</scmCheckoutRetryCount>
+  <views>
+    <hudson.model.AllView>
+      <owner class="hudson" reference="../../.."/>
+      <name>all</name>
+      <filterExecutors>false</filterExecutors>
+      <filterQueue>false</filterQueue>
+      <properties class="hudson.model.View$PropertyList"/>
+    </hudson.model.AllView>
+  </views>
+  <primaryView>all</primaryView>
+  <slaveAgentPort>50000</slaveAgentPort>
+  <label></label>
+  <nodeProperties/>
+  <globalNodeProperties/>
+  <noUsageStatistics>true</noUsageStatistics>
+</hudson>
