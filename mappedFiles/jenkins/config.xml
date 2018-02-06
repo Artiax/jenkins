@@ -48,7 +48,7 @@
               <image>jenkins-slave:latest</image>
               <privileged>true</privileged>
               <alwaysPullImage>false</alwaysPullImage>
-              <workingDir>/var/jenkins_home</workingDir>
+              <workingDir>/var/jenkins</workingDir>
               <command></command>
               <args></args>
               <ttyEnabled>true</ttyEnabled>

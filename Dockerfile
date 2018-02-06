@@ -12,14 +12,14 @@ RUN apt-get update && \
 # Installing jenkins
 #######################################################################
 
-ENV JENKINS_HOME=/var/jenkins_home
+ENV JENKINS_HOME=/var/jenkins
 ENV JENKINS_MASTER_PORT=80
 ENV JENKINS_SLAVE_PORT=30050
 ENV JENKINS_PLUGINS_URL=http://mirrors.jenkins.io/plugins
 
-ARG JENKINS_VERSION=2.46.2
-ARG JENKINS_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
-ARG JENKINS_SHA=aa7f243a4c84d3d6cfb99a218950b8f7b926af7aa2570b0e1707279d464472c7
+ARG JENKINS_VERSION=2.89.2
+ARG JENKINS_URL=http://mirrors.jenkins.io/war-stable/${JENKINS_VERSION}/jenkins.war
+ARG JENKINS_SHA=014f669f32bc6e925e926e260503670b32662f006799b133a031a70a794c8a14
 
 RUN mkdir -p ${JENKINS_HOME}
 
@@ -30,9 +30,9 @@ RUN curl -fsSL ${JENKINS_URL} -o ${JENKINS_HOME}/jenkins.war && \
 # Installing consul-template
 #######################################################################
 
-ARG CONSUL_TEMPLATE_VERSION=0.18.2
+ARG CONSUL_TEMPLATE_VERSION=0.19.4
 ARG CONSUL_TEMPLATE_URL=https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip
-ARG CONSUL_TEMPLATE_SHA=6fee6ab68108298b5c10e01357ea2a8e4821302df1ff9dd70dd9896b5c37217c
+ARG CONSUL_TEMPLATE_SHA=5f70a7fb626ea8c332487c491924e0a2d594637de709e5b430ecffc83088abc0
 
 RUN curl -fsSL ${CONSUL_TEMPLATE_URL} -o /tmp/consul_template.zip && \
     echo "${CONSUL_TEMPLATE_SHA}  /tmp/consul_template.zip" | sha256sum -c - && \
@@ -61,4 +61,4 @@ RUN plugins.sh /tmp/plugins.json
 EXPOSE ${JENKINS_MASTER_PORT}
 EXPOSE ${JENKINS_SLAVE_PORT}
 
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]

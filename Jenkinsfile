@@ -5,13 +5,11 @@ echo "Spawning a slave for this job..."
 
 node("docker") {
     stage("Clone") {
-        git branch: 'development', url: "https://github.com/Artiax/kubernetes.git", changelog: false, poll: false
+        git branch: 'master', url: "https://github.com/Artiax/jenkins.git", changelog: false, poll: false
     }
 
     stage("Build") {
-        dir('images/jenkins') {
-            image = docker.build "jenkins"
-        }
+        image = docker.build "jenkins"
     }
 
     stage("Tag") {
