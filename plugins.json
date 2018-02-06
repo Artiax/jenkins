@@ -1,186 +1,158 @@
 [
   {
-    "plugin": "1.67",
-    "version": "job-dsl"
+    "plugin": "ace-editor"
   },
   {
-    "plugin": "antisamy-markup-formatter",
-    "version": "1.5"
+    "plugin": "authentication-tokens"
   },
   {
-    "plugin": "apache-httpcomponents-client-4-api",
-    "version": "4.5.3-2.1"
+    "plugin": "bouncycastle-api"
   },
   {
-    "plugin": "bouncycastle-api",
-    "version": "2.16.2"
+    "plugin": "branch-api"
   },
   {
-    "plugin": "branch-api",
-    "version": "2.0.18"
+    "plugin": "cloudbees-folder"
   },
   {
-    "plugin": "cloudbees-folder",
-    "version": "6.3"
+    "plugin": "credentials"
   },
   {
-    "plugin": "command-launcher",
-    "version": "1.2"
+    "plugin": "credentials-binding"
   },
   {
-    "plugin": "credentials-binding",
-    "version": "1.15"
+    "plugin": "display-url-api"
   },
   {
-    "plugin": "credentials",
-    "version": "2.1.16"
+    "plugin": "docker-commons"
   },
   {
-    "plugin": "display-url-api",
-    "version": "2.2.0"
+    "plugin": "docker-workflow"
   },
   {
-    "plugin": "docker-commons",
-    "version": "1.11"
+    "plugin": "durable-task"
   },
   {
-    "plugin": "docker-workflow",
-    "version": "1.15"
+    "plugin": "git"
   },
   {
-    "plugin": "durable-task",
-    "version": "1.17"
+    "plugin": "git-client"
   },
   {
-    "plugin": "git-client",
-    "version": "2.7.1"
+    "plugin": "git-server"
   },
   {
-    "plugin": "git",
-    "version": "3.7.0"
+    "plugin": "greenballs"
   },
   {
-    "plugin": "jackson2-api",
-    "version": "2.8.10.1"
+    "plugin": "handlebars"
   },
   {
-    "plugin": "jsch",
-    "version": "0.1.54.1"
+    "plugin": "icon-shim"
   },
   {
-    "plugin": "junit",
-    "version": "1.24"
+    "plugin": "job-dsl"
   },
   {
-    "plugin": "kubernetes-credentials",
-    "version": "0.3.0"
+    "plugin": "jquery-detached"
   },
   {
-    "plugin": "kubernetes",
-    "version": "1.2"
+    "plugin": "junit"
   },
   {
-    "plugin": "matrix-auth",
-    "version": "2.2"
+    "plugin": "kubernetes"
   },
   {
-    "plugin": "matrix-project",
-    "version": "1.12"
+    "plugin": "mailer"
   },
   {
-    "plugin": "pipeline-build-step",
-    "version": "2.7"
+    "plugin": "matrix-project"
   },
   {
-    "plugin": "pipeline-graph-analysis",
-    "version": "1.6"
+    "plugin": "momentjs"
   },
   {
-    "plugin": "pipeline-input-step",
-    "version": "2.8"
+    "plugin": "pipeline-build-step"
   },
   {
-    "plugin": "pipeline-model-api",
-    "version": "1.2.7"
+    "plugin": "pipeline-graph-analysis"
   },
   {
-    "plugin": "pipeline-model-definition",
-    "version": "1.2.7"
+    "plugin": "pipeline-input-step"
   },
   {
-    "plugin": "pipeline-model-extensions",
-    "version": "1.2.7"
+    "plugin": "pipeline-milestone-step"
   },
   {
-    "plugin": "pipeline-rest-api",
-    "version": "2.9"
+    "plugin": "pipeline-model-api"
   },
   {
-    "plugin": "pipeline-stage-step",
-    "version": "2.3"
+    "plugin": "pipeline-model-declarative-agent"
   },
   {
-    "plugin": "pipeline-stage-tags-metadata",
-    "version": "1.2.7"
+    "plugin": "pipeline-model-definition"
   },
   {
-    "plugin": "pipeline-stage-view",
-    "version": "2.9"
+    "plugin": "pipeline-model-extensions"
   },
   {
-    "plugin": "scm-api",
-    "version": "2.2.6"
+    "plugin": "pipeline-rest-api"
   },
   {
-    "plugin": "script-security",
-    "version": "1.40"
+    "plugin": "pipeline-stage-step"
   },
   {
-    "plugin": "structs",
-    "version": "1.13"
+    "plugin": "pipeline-stage-tags-metadata"
   },
   {
-    "plugin": "variant",
-    "version": "1.1"
+    "plugin": "pipeline-stage-view"
   },
   {
-    "plugin": "windows-slaves",
-    "version": "1.3.1"
+    "plugin": "plain-credentials"
   },
   {
-    "plugin": "workflow-api",
-    "version": "2.25"
+    "plugin": "scm-api"
   },
   {
-    "plugin": "workflow-cps-global-lib",
-    "version": "2.9"
+    "plugin": "script-security"
   },
   {
-    "plugin": "workflow-cps",
-    "version": "2.44"
+    "plugin": "ssh-credentials"
   },
   {
-    "plugin": "workflow-durable-task-step",
-    "version": "2.18"
+    "plugin": "structs"
   },
   {
-    "plugin": "workflow-job",
-    "version": "2.17"
+    "plugin": "workflow-aggregator"
   },
   {
-    "plugin": "workflow-multibranch",
-    "version": "2.17"
+    "plugin": "workflow-api"
   },
   {
-    "plugin": "workflow-scm-step",
-    "version": "2.6"
+    "plugin": "workflow-basic-steps"
   },
   {
-    "plugin": "workflow-step-api",
-    "version": "2.14"
+    "plugin": "workflow-cps"
   },
   {
-    "plugin": "workflow-support",
-    "version": "2.18"
+    "plugin": "workflow-cps-global-lib"
+  },
+  {
+    "plugin": "workflow-durable-task-step"
+  },
+  {
+    "plugin": "workflow-job"
+  },
+  {
+    "plugin": "workflow-multibranch"
+  },
+  {
+    "plugin": "workflow-scm-step"
+  },
+  {
+    "plugin": "workflow-step-api"
+  },
+  {
+    "plugin": "workflow-support"
   }
 ]

@@ -12,19 +12,15 @@ RUN apt-get update && \
 # Installing jenkins
 #######################################################################
 
-ENV JENKINS_HOME=/var/jenkins
 ENV JENKINS_MASTER_PORT=80
 ENV JENKINS_SLAVE_PORT=30050
-ENV JENKINS_PLUGINS_URL=http://mirrors.jenkins.io/plugins
-
-ARG JENKINS_VERSION=2.89.2
-ARG JENKINS_URL=http://mirrors.jenkins.io/war-stable/${JENKINS_VERSION}/jenkins.war
-ARG JENKINS_SHA=014f669f32bc6e925e926e260503670b32662f006799b133a031a70a794c8a14
+ENV JENKINS_HOME="/var/jenkins"
+ENV JENKINS_UPDATES_URL="https://updates.jenkins.io"
+ENV JENKINS_STABLE_URL="${JENKINS_UPDATES_URL}/stable/latest/jenkins.war"
 
 RUN mkdir -p ${JENKINS_HOME}
 
-RUN curl -fsSL ${JENKINS_URL} -o ${JENKINS_HOME}/jenkins.war && \
-    echo "${JENKINS_SHA}  ${JENKINS_HOME}/jenkins.war" | sha256sum -c -
+RUN curl -fsSL ${JENKINS_STABLE_URL} -o ${JENKINS_HOME}/jenkins.war
 
 #######################################################################
 # Installing consul-template
