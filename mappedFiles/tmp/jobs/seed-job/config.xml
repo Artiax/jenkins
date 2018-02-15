@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.17">
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers>
+        <hudson.triggers.TimerTrigger>
+          <spec>*/15 * * * *</spec>
+        </hudson.triggers.TimerTrigger>
+      </triggers>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.44">
+    <script>node {
+    stage(&quot;Clone&quot;) {
+        git branch: &quot;master&quot;, changelog: false, poll: false, url: &quot;https://github.com/Artiax/jenkins-jobs.git&quot;
+    }
+
+    stage(&quot;Process&quot;) {
+        jobDsl ignoreMissingFiles: true, removedConfigFilesAction: &quot;DELETE&quot;, removedJobAction: &quot;DELETE&quot;, removedViewAction: &quot;DELETE&quot;, targets: &quot;*.groovy&quot;
+    }
+}</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>

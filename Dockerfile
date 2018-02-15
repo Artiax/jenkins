@@ -12,15 +12,25 @@ RUN apt-get update && \
 # Installing jenkins
 #######################################################################
 
+ENV JENKINS_HOME=/var/jenkins
 ENV JENKINS_MASTER_PORT=80
 ENV JENKINS_SLAVE_PORT=30050
-ENV JENKINS_HOME="/var/jenkins"
-ENV JENKINS_UPDATES_URL="https://updates.jenkins.io"
-ENV JENKINS_STABLE_URL="${JENKINS_UPDATES_URL}/stable/latest/jenkins.war"
+ENV JENKINS_PLUGINS_URL=http://mirrors.jenkins.io/plugins
+
+ARG JENKINS_VERSION=latest
+ARG JENKINS_URL=http://mirrors.jenkins.io/war-stable/${JENKINS_VERSION}/jenkins.war
+ARG JENKINS_SHA256_URL=http://mirrors.jenkins.io/war-stable/${JENKINS_VERSION}/jenkins.war.sha256
 
 RUN mkdir -p ${JENKINS_HOME}
 
-RUN curl -fsSL ${JENKINS_STABLE_URL} -o ${JENKINS_HOME}/jenkins.war
+WORKDIR ${JENKINS_HOME}
+
+RUN curl -fsSL ${JENKINS_SHA256_URL} -o jenkins.war.sha256
+RUN curl -fsSL ${JENKINS_URL} -o jenkins.war && \
+    sha256sum --ignore-missing -c jenkins.war.sha256 && \
+    rm -f jenkins.war.sha256
+
+WORKDIR /
 
 #######################################################################
 # Installing consul-template
@@ -28,11 +38,16 @@ RUN curl -fsSL ${JENKINS_STABLE_URL} -o ${JENKINS_HOME}/jenkins.war
 
 ARG CONSUL_TEMPLATE_VERSION=0.19.4
 ARG CONSUL_TEMPLATE_URL=https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip
-ARG CONSUL_TEMPLATE_SHA=5f70a7fb626ea8c332487c491924e0a2d594637de709e5b430ecffc83088abc0
+ARG CONSUL_TEMPLATE_SHA256_URL=https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_SHA256SUMS
 
-RUN curl -fsSL ${CONSUL_TEMPLATE_URL} -o /tmp/consul_template.zip && \
-    echo "${CONSUL_TEMPLATE_SHA}  /tmp/consul_template.zip" | sha256sum -c - && \
-    echo unzip /tmp/consul_template.zip -d /usr/local/bin
+WORKDIR /tmp
+
+RUN curl -fsSL ${CONSUL_TEMPLATE_SHA256_URL} -o consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip.sha256
+RUN curl -fsSL ${CONSUL_TEMPLATE_URL} -o consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip && \
+    sha256sum --ignore-missing -c consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip.sha256 && \
+    unzip consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip -d /usr/local/bin
+
+WORKDIR /
 
 #######################################################################
 # Copying and laying down the files

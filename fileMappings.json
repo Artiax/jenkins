@@ -6,5 +6,9 @@
   {
     "from": "jenkins/*",
     "to": "${JENKINS_HOME}/"
+  },
+  {
+    "from": "tmp/*",
+    "to": "/tmp/"
   }
 ]

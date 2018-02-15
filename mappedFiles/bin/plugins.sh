@@ -8,12 +8,11 @@ for plugin in $(jq '.[] | .plugin+":"+.version' $1 -r); do
   plugin=(${plugin//:/ })
   name=${plugin[0]}
   version=${plugin[1]}
-  [[ -n ${version} ]] || version="stable"
+  [[ -z ${version} ]] && version="latest"
 
-  echo "Downloading plugin ${name}:${version}"
+  echo "Installing plugin ${name}:${version}"
 
-  curl -fsSL ${JENKINS_UPDATES_URL}/${version}/latest/${name}.hpi -o ${JENKINS_HOME}/plugins/${name}-${version}.hpi
+  curl -fsSL ${JENKINS_PLUGINS_URL}/${name}/${version}/${name}.hpi -o ${JENKINS_HOME}/plugins/${name}.jpi
 
-  unzip -qo ${JENKINS_HOME}/plugins/${name}-${version}.hpi
-  touch ${JENKINS_HOME}/plugins/${name}-${version}.pinned
+  unzip -qo ${JENKINS_HOME}/plugins/${name}.jpi
 done
