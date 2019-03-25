@@ -105,7 +105,7 @@
   },
   {
     "shortName": "lockable-resources",
-    "version": "2.4"
+    "version": "2.5"
   },
   {
     "shortName": "mailer",
@@ -181,7 +181,7 @@
   },
   {
     "shortName": "script-security",
-    "version": "1.55"
+    "version": "1.56"
   },
   {
     "shortName": "ssh-credentials",
@@ -213,7 +213,7 @@
   },
   {
     "shortName": "workflow-cps",
-    "version": "2.64"
+    "version": "2.65"
   },
   {
     "shortName": "workflow-cps-global-lib",
