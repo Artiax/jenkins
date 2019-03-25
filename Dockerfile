@@ -1,12 +1,10 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jdk-alpine
 
 #######################################################################
 # Installing additional packages
 #######################################################################
 
-RUN apt-get update && \
-    apt-get install -y git curl jq && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache git curl jq unzip bash ttf-dejavu
 
 #######################################################################
 # Installing jenkins
@@ -25,10 +23,10 @@ RUN mkdir -p ${JENKINS_HOME}
 
 WORKDIR ${JENKINS_HOME}
 
-RUN curl -fsSL ${JENKINS_SHA256_URL} -o jenkins.war.sha256
+RUN curl -fsSL ${JENKINS_SHA256_URL} | sed -E "s/([a-z0-9]) jenkins/\1  jenkins/" > jenkins.sha256
 RUN curl -fsSL ${JENKINS_URL} -o jenkins.war && \
-    sha256sum --ignore-missing -c jenkins.war.sha256 && \
-    rm -f jenkins.war.sha256
+    sha256sum -c jenkins.sha256 && \
+    rm -f jenkins.sha256
 
 WORKDIR /
 
@@ -36,16 +34,18 @@ WORKDIR /
 # Installing consul-template
 #######################################################################
 
-ARG CONSUL_TEMPLATE_VERSION=0.19.4
+ARG CONSUL_TEMPLATE_VERSION=0.19.5
+ARG CONSUL_TEMPLATE_ARCHITECTURE=linux_amd64
 ARG CONSUL_TEMPLATE_URL=https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip
 ARG CONSUL_TEMPLATE_SHA256_URL=https://releases.hashicorp.com/consul-template/${CONSUL_TEMPLATE_VERSION}/consul-template_${CONSUL_TEMPLATE_VERSION}_SHA256SUMS
 
 WORKDIR /tmp
 
-RUN curl -fsSL ${CONSUL_TEMPLATE_SHA256_URL} -o consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip.sha256
-RUN curl -fsSL ${CONSUL_TEMPLATE_URL} -o consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip && \
-    sha256sum --ignore-missing -c consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip.sha256 && \
-    unzip consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.zip -d /usr/local/bin
+RUN curl -fsSL ${CONSUL_TEMPLATE_SHA256_URL} | grep ${CONSUL_TEMPLATE_ARCHITECTURE}.zip > consul-template.sha256
+RUN curl -fsSL ${CONSUL_TEMPLATE_URL} -o consul-template_${CONSUL_TEMPLATE_VERSION}_${CONSUL_TEMPLATE_ARCHITECTURE}.zip && \
+    sha256sum -c consul-template.sha256 && \
+    unzip consul-template_${CONSUL_TEMPLATE_VERSION}_${CONSUL_TEMPLATE_ARCHITECTURE}.zip -d /usr/local/bin && \
+    rm -f consul-template*
 
 WORKDIR /
 
@@ -58,9 +58,7 @@ COPY plugins.json /tmp/
 COPY fileMappings.json /tmp/
 
 RUN mv /tmp/mappedFiles/bin/fileMapper.sh /usr/local/bin/ && \
-    chmod +x /usr/local/bin/fileMapper.sh && \
     fileMapper.sh /tmp/fileMappings.json && \
-    chmod -R +x /usr/local/bin/ && \
     rm -rf /tmp/mappedFiles
 
 RUN plugins.sh /tmp/plugins.json
