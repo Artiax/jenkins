@@ -4,7 +4,8 @@ FROM openjdk:8-jdk-alpine
 # Installing additional packages
 #######################################################################
 
-RUN apk add --no-cache git curl jq unzip bash ttf-dejavu
+RUN apk add --no-cache \
+    git curl jq unzip bash ttf-dejavu
 
 #######################################################################
 # Installing jenkins
