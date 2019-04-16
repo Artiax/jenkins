@@ -16,16 +16,20 @@
     "version": "1.3"
   },
   {
+    "shortName": "authorize-project",
+    "version": "1.3.0"
+  },
+  {
     "shortName": "bouncycastle-api",
     "version": "2.17"
   },
   {
     "shortName": "branch-api",
-    "version": "2.2.0"
+    "version": "2.4.0"
   },
   {
     "shortName": "cloudbees-folder",
-    "version": "6.7"
+    "version": "6.8"
   },
   {
     "shortName": "command-launcher",
@@ -41,15 +45,15 @@
   },
   {
     "shortName": "display-url-api",
-    "version": "2.3.0"
+    "version": "2.3.1"
   },
   {
     "shortName": "docker-commons",
-    "version": "1.13"
+    "version": "1.14"
   },
   {
     "shortName": "docker-workflow",
-    "version": "1.17"
+    "version": "1.18"
   },
   {
     "shortName": "durable-task",
@@ -61,7 +65,7 @@
   },
   {
     "shortName": "git-client",
-    "version": "2.7.6"
+    "version": "2.7.7"
   },
   {
     "shortName": "git-server",
@@ -125,7 +129,7 @@
   },
   {
     "shortName": "pipeline-build-step",
-    "version": "2.8"
+    "version": "2.9"
   },
   {
     "shortName": "pipeline-graph-analysis",
@@ -141,7 +145,7 @@
   },
   {
     "shortName": "pipeline-model-api",
-    "version": "1.3.7"
+    "version": "1.3.8"
   },
   {
     "shortName": "pipeline-model-declarative-agent",
@@ -149,11 +153,11 @@
   },
   {
     "shortName": "pipeline-model-definition",
-    "version": "1.3.7"
+    "version": "1.3.8"
   },
   {
     "shortName": "pipeline-model-extensions",
-    "version": "1.3.7"
+    "version": "1.3.8"
   },
   {
     "shortName": "pipeline-rest-api",
@@ -165,7 +169,7 @@
   },
   {
     "shortName": "pipeline-stage-tags-metadata",
-    "version": "1.3.7"
+    "version": "1.3.8"
   },
   {
     "shortName": "pipeline-stage-view",
@@ -177,11 +181,11 @@
   },
   {
     "shortName": "scm-api",
-    "version": "2.4.0"
+    "version": "2.4.1"
   },
   {
     "shortName": "script-security",
-    "version": "1.56"
+    "version": "1.57"
   },
   {
     "shortName": "ssh-credentials",
@@ -213,7 +217,7 @@
   },
   {
     "shortName": "workflow-cps",
-    "version": "2.65"
+    "version": "2.66"
   },
   {
     "shortName": "workflow-cps-global-lib",
@@ -221,7 +225,7 @@
   },
   {
     "shortName": "workflow-durable-task-step",
-    "version": "2.29"
+    "version": "2.30"
   },
   {
     "shortName": "workflow-job",
