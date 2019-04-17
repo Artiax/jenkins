@@ -11,9 +11,6 @@
         </hudson.triggers.TimerTrigger>
       </triggers>
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
-    <org.jenkinsci.plugins.authorizeproject.AuthorizeProjectProperty plugin="authorize-project@1.3.0">
-      <strategy class="org.jenkinsci.plugins.authorizeproject.strategy.TriggeringUsersAuthorizationStrategy"/>
-    </org.jenkinsci.plugins.authorizeproject.AuthorizeProjectProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.44">
     <script>node {
