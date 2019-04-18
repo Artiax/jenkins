@@ -13,7 +13,7 @@
     </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
   </properties>
   <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.44">
-    <script>node {
+    <script>node('master') {
     stage(&quot;Clone&quot;) {
         git branch: &quot;master&quot;, changelog: false, poll: false, url: &quot;https://github.com/Artiax/jenkins-jobs.git&quot;
     }
