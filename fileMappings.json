@@ -14,5 +14,5 @@
   {
     "from": "consul-template",
     "to": "/etc/consul-template"
-  },
+  }
 ]
