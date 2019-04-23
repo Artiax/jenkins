@@ -10,5 +10,9 @@
   {
     "from": "tmp/*",
     "to": "/tmp/"
-  }
+  },
+  {
+    "from": "consul-template",
+    "to": "/etc/consul-template"
+  },
 ]
