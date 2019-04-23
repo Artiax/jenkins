@@ -7,9 +7,7 @@
   <useSecurity>true</useSecurity>
   <authorizationStrategy class="hudson.security.ProjectMatrixAuthorizationStrategy">
 {{- /* Iterates over jenkins/rbac Consul entry and configures permissions. */}}
-{{- $rbac := key "jenkins/rbac" | parseJSON }}
-
-{{- range $group, $permissions := $rbac }}
+{{- range $group, $permissions := key "jenkins/rbac" | parseJSON }}
   {{- range $permission := $permissions }}
     <permission>{{ $permission }}:{{ $group }}</permission>
   {{- end }}
